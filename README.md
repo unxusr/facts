@@ -1,4 +1,4 @@
-# facts
+# Facts
 API for bringing some useful information about any thing
 
 Facts is a solution for chatbots fallback; Instead of fallback on the basic answers when the user questions are not detected by the model then this request can be made from the backend and bring some facts and logical answer for the undetected question.
