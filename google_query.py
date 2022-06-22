@@ -2,6 +2,7 @@ import json
 import requests
 import re
 import settings
+import sys
 
 
 def remove_dates(sentence):
@@ -19,6 +20,9 @@ def search(query):
         result = remove_dates(rjson['items'][0]['snippet'])
     except:
         return "No Information Available"
-    print(f"Answer: {result}")
-    return f"Answer: {result}"
+    print(result)
+    return f"Google Answer: {result}"
 
+
+q = sys.argv[1]
+search(q)

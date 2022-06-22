@@ -13,7 +13,7 @@ def get_sentiments(phrase):
         label = "Negative"
     elif response.json()['label'] == "neutral":
         label = "Neutral"
-    return f"Your phrase was:-> {phrase}.", f"Sentiment:-> {label}"
+    return f"Sentiment: {label}"
 
 
 # word = sys.argv[1]
