@@ -12,13 +12,6 @@ from languages import langs
 def facts(word):
     print("getting facts...")
     data = []
-    senti = sentiment.get_sentiments(word)
-    google_result = google_query.search(word)
-    city = get_geo_place(word)
-    color = [i for i in tokenize(word) if check_color(i)]
-    currency = get_currency(word)
-    numeric = get_dates_cardinals(word)
-    lang = langs(word)
     if len(word.split()) >= 1:
         words = tokenize(word)
         for word in words:
@@ -50,4 +43,4 @@ def facts(word):
                 else:
                     print("Concept Net is Down!")
 
-    return senti, f"Colors: {color}", city, google_result, currency, numeric, f"Facts: {data}", lang
+    return data
