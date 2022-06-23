@@ -20,9 +20,4 @@ def search(query):
         result = remove_dates(rjson['items'][0]['snippet'])
     except:
         return "No Information Available"
-    print(result)
-    return f"Google Answer: {result}"
-
-
-q = sys.argv[1]
-search(q)
+    return result
