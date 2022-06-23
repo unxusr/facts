@@ -1,16 +1,15 @@
 from colour import Color
 import sys
 
-def check_color(color):
+
+def check_color(phrase):
     colors = []
     try:
-        Color(color)
-        colors.append(color)
-        return color
+        Color(phrase)
+        colors.append(phrase)
+        return phrase
     except ValueError:
         return False
-    print(colors)
-    #return f"Colors Detected {colors}"
 
 
 if '__main__' == '__main__':
@@ -18,5 +17,5 @@ if '__main__' == '__main__':
     print(check_color(s))
     color = [i for i in s.split(' ') if check_color(i)]
     for i in color:
-        print("Found a color:", i)
+        print(f"Found a color: {i}")
 
