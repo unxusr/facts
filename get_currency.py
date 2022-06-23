@@ -1,19 +1,29 @@
-import pycountry
 import sys
+
+import pycountry
 from tokenizer import tokenize
+
+import re
+
+def pluralize(noun):
+    if re.search('[sxz]$', noun):
+         return re.sub('$', 'es', noun)
+    elif re.search('[^aeioudgkprt]h$', noun):
+        return re.sub('$', 'es', noun)
+    elif re.search('[aeiou]y$', noun):
+        return re.sub('y$', 'ies', noun)
+    else:
+        return noun + 's'
 
 
 def get_currency(phrase):
-    for token in tokenize(phrase):
-        for country in pycountry.countries:
-            if country.name.lower() in phrase.lower():
-                nu = pycountry.countries.get(numeric=country.numeric)
-                for currency in pycountry.currencies:
-                    if currency.numeric == country.numeric:
-                        return f"Currency for {country.name} is:", pycountry.currencies.get(numeric=str(nu.numeric)).name
-                    elif country.name.lower() == token.capitalize():
-                        return pycountry.currencies.lookup(token)
-
-
-txt = sys.argv[1]
-print(get_currency(txt))
+    for currency in pycountry.currencies:
+        for token in tokenize(phrase):
+            if token.upper() == currency.alpha_3:
+                return currency.name
+            elif token.capitalize() == currency.name:
+                return currency.name
+            elif token in pluralize(currency.name.lower()):
+                return currency.name
+            elif token in pluralize(currency.alpha_3.lower()):
+                return currency.name
